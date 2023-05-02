@@ -1,4 +1,3 @@
-
 const express = require("express");
 const router = express.Router();
 const {
@@ -10,11 +9,11 @@ const {
   resetPassword,
 } = require("../controller/controllerAuth");
 
+router.get("/verif-otp", verifyChangePassword);
+router.get("/otp/:id/:code", otp);
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.put("/send-otp", sendOTPEmail);
-router.get("/verif-otp", verifyChangePassword);
 router.put("/reset-password", resetPassword);
-router.get("/otp/:id/:code", otp);
 
 module.exports = router;
