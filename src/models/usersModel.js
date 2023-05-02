@@ -1,5 +1,6 @@
 const pool = require("../config/db");
 
+//auth model
 const createUser = (data) => {
   const { email, fullname, password, id, otp } = data;
   let create_at = new Date().toISOString();
@@ -49,9 +50,57 @@ const verifyUser = (id) => {
     })
   );
 };
+const sendOtp = (email, otp) => {
+  return new Promise((resolve, reject) =>
+    pool.query(
+      `UPDATE users SET otp = '${otp}' WHERE email = '${email}'`,
+      (err, result) => {
+        if (!err) {
+          resolve(result);
+        } else {
+          reject(err);
+        }
+      }
+    )
+  );
+};
+const getOTP = (email, otp) => {
+  return new Promise((resolve, reject) =>
+    pool.query(
+      `SELECT * FROM users WHERE email = '${email}' AND otp = '${otp}'`,
+      (err, result) => {
+        if (!err) {
+          resolve(result);
+        } else {
+          reject(err);
+        }
+      }
+    )
+  );
+};
+
+const changePassword = (email, password) => {
+  return new Promise((resolve, reject) =>
+    pool.query(
+      `UPDATE users SET password = '${password}' WHERE email = '${email}'`,
+      (err, result) => {
+        if (!err) {
+          resolve(result);
+        } else {
+          reject(err);
+        }
+      }
+    )
+  );
+};
+
+//user model
 module.exports = {
   createUser,
   findUser,
   selectUserById,
   verifyUser,
+  sendOtp,
+  getOTP,
+  changePassword,
 };
