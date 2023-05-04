@@ -94,7 +94,38 @@ const changePassword = (email, password) => {
   );
 };
 
-//user model
+//users model
+const updateProfile = (data) => {
+  const { id, email, fullname, phone, city, address, postcode } = data;
+  return new Promise((resolve, reject) => {
+    pool.query(
+      `UPDATE users SET email='${email}', fullname='${fullname}', phone='${phone}', city='${city}', address='${address}', postcode='${postcode}' id='${id}'`,
+      (err, result) => {
+        if (!err) {
+          resolve(result);
+        } else {
+          reject(err);
+        }
+      }
+    );
+  })
+};
+
+const getProfileUsers = (data) => {
+  let { id } = data;
+  return new Promise((resolve, reject) => {
+    pool.query(`SELECT * FROM users WHERE id = '${id}'`,
+      (err, result) => {
+        if (!err) {
+          resolve(result);
+        } else {
+          reject(err);
+        }
+      }
+    );
+  })
+};
+
 module.exports = {
   createUser,
   findUser,
@@ -103,4 +134,6 @@ module.exports = {
   sendOtp,
   getOTP,
   changePassword,
+  updateProfile,
+  getProfileUsers,
 };
