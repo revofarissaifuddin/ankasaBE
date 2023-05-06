@@ -21,16 +21,16 @@ const AirlinesController = {
       data.airline_logo = imageUrl.secure_url;
 
       const addAirline = await CreateAirlines(data);
+      console.log(addAirline);
       if (!addAirline) {
         return res.status(404).json({
           status: 404,
           message: "Error input data failed",
         });
       }
-      return res.status(201).json({
+      return res.status(200).json({
         status: 200,
-        message: "input data success",
-        data: `name :${airline_name}`,
+        message: "input data success"
       });
     } catch (error) {
       res.status(404).json({
