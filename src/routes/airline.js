@@ -1,15 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const {
-  CreateAirlines,
-  updateAirlines,
-  getAllAirlines,
-  getAirlinesById,
+  InsertAirlines,
+  ReadAirlineAll,
+  ReadAirlineById,
+  UpdateAirlines,
 } = require("../controller/controllerAirlines");
 
-router.post("/",CreateAirlines);
-router.get("/", getAllAirlines);
-router.get("/:id", getAirlinesById);
-router.put("/update/:id", updateAirlines);
+router.post("/", InsertAirlines);
+router.get("/", ReadAirlineAll);
+router.get("/:id", ReadAirlineById);
+router.put("/update/:id", UpdateAirlines);
 
 module.exports = router;
