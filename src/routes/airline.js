@@ -8,9 +8,9 @@ const {
 } = require("../controller/controllerAirlines");
 const upload = require("../middleware/uploadPhoto");
 
-router.post("/", upload.single("airline_logo"), InsertAirlines);
+router.post("/", upload.single("photo"), InsertAirlines);
 router.get("/", ReadAirlineAll);
 router.get("/:id", ReadAirlineById);
-router.put("/update/:id", upload.single("airline_logo"), UpdateAirlines);
+router.put("/update/:id", upload.single("photo"), UpdateAirlines);
 
 module.exports = router;

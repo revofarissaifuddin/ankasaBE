@@ -100,7 +100,7 @@ const updateProfile = (data) => {
   let time = new Date().toISOString();
   return new Promise((resolve, reject) => {
     pool.query(
-      `UPDATE users SET email='${email}', fullname='${fullname}', phone='${phone}', city='${city}', address='${address}', postcode='${postcode}',update_at='${time}' WHERE id='${id}'`,
+      `UPDATE users SET email='${email}', fullname='${fullname}', phone='${phone}', city='${city}', address='${address}', postcode='${postcode}', update_at='${time}' WHERE id='${id}'`,
       (err, result) => {
         if (!err) {
           resolve(result);

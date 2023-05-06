@@ -19,7 +19,7 @@ const AirlinesController = {
       }
       const data = {};
       data.airline_name = req.body.airline_name;
-      data.airline_logo = imageUrl.secure_url;
+      data.photo = imageUrl.secure_url;
 
       const addAirline = await CreateAirlines(data);
       console.log(addAirline);
@@ -102,7 +102,7 @@ const AirlinesController = {
       const id = req.params.id;
       const data = {};
       data.airline_name = req.body.airline_name;
-      data.airline_logo = imageUrl.secure_url;
+      data.photo = imageUrl.secure_url;
 
       const updateAirline = await updateAirlines(id, data);
       if (!updateAirline) {
