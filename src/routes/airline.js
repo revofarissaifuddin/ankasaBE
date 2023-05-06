@@ -6,10 +6,11 @@ const {
   ReadAirlineById,
   UpdateAirlines,
 } = require("../controller/controllerAirlines");
+const upload = require("../middleware/uploadPhoto");
 
-router.post("/", InsertAirlines);
+router.post("/", upload.single("airline_logo"), InsertAirlines);
 router.get("/", ReadAirlineAll);
 router.get("/:id", ReadAirlineById);
-router.put("/update/:id", UpdateAirlines);
+router.put("/update/:id", upload.single("airline_logo"), UpdateAirlines);
 
 module.exports = router;
