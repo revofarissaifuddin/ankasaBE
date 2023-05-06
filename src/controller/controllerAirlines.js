@@ -4,6 +4,8 @@ const {
   getAirlinesById,
   updateAirlines,
 } = require("../models/airlinesModel");
+const cloudinary = require("../config/photo");
+const path = require("path");
 const AirlinesController = {
   InsertAirlines: async (req, res, next) => {
     try {

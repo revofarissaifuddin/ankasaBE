@@ -6,6 +6,8 @@ const {
 } = require("../models/usersModel");
 const argon2 = require("argon2");
 const email = require("../middleware/email");
+const cloudinary = require("../config/photo");
+const path = require("path");
 const UsersController = {
   // show data user by id
   getUserByID: async (req, res, next) => {
@@ -46,7 +48,7 @@ const UsersController = {
 
       const data = {};
       data.email = req.body.email;
-      data.fullname = req.body.name;
+      data.fullname = req.body.fullname;
       data.phone = req.body.phone;
       data.city = req.body.city;
       data.address = req.body.address;
