@@ -1,10 +1,10 @@
 const pool = require("../config/db");
 /*airlines*/
 const CreateAirlines = (data) => {
-  const { id, airline_name, airline_logo } = data;
+  const { airline_name, airline_logo } = data;
   return new Promise((resolve, reject) =>
     pool.query(
-      `INSERT INTO airlines(id,airline_name, airline_logo) VALUES('${id}','${airline_name}','${airline_logo}')`,
+      `INSERT INTO airlines(id,airline_name, airline_logo) VALUES('${airline_name}','${airline_logo}')`,
       (err, result) => {
         if (!err) {
           resolve(result);
