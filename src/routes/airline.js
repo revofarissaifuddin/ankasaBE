@@ -1,14 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const {
-  getUserByID,
-  UpdateProfileUsers,
-  UpdatePhotoPorfile,
-} = require("../controller/controllerUsers");
-const { protect } = require("../middleware/auth");
+  CreateAirlines,
+  updateAirlines,
+  getAllAirlines,
+  getAirlinesById,
+} = require("../controller/controllerAirlines");
 
-router.get("/my-users/", protect, getUserByID);
-router.put("/my-users/", protect, UpdateProfileUsers);
-router.put("/my-users/photo/", protect, UpdatePhotoPorfile);
+router.post("/",CreateAirlines);
+router.get("/", getAllAirlines);
+router.get("/:id", getAirlinesById);
+router.put("/update/:id", updateAirlines);
 
 module.exports = router;

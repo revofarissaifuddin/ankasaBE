@@ -51,8 +51,8 @@ const UsersController = {
       data.city = req.body.city;
       data.address = req.body.address;
       data.postcode = req.body.postcode;
-      const updateData = await updateProfile(id, data);
 
+      const updateData = await updateProfile(id, data);
       if (!updateData) {
         return res.status(400).json({
           status: 404,
