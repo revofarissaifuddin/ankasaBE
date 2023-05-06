@@ -97,9 +97,28 @@ const changePassword = (email, password) => {
 //users model
 const updateProfile = (data) => {
   const { id, email, fullname, phone, city, address, postcode } = data;
+  let time = new Date().toISOString();
   return new Promise((resolve, reject) => {
     pool.query(
-      `UPDATE users SET email='${email}', fullname='${fullname}', phone='${phone}', city='${city}', address='${address}', postcode='${postcode}' id='${id}'`,
+      `UPDATE users SET email='${email}', fullname='${fullname}', phone='${phone}', city='${city}', address='${address}', postcode='${postcode}',update_at='${time}' WHERE id='${id}'`,
+      (err, result) => {
+        if (!err) {
+          resolve(result);
+        } else {
+          reject(err);
+        }
+      }
+    );
+  });
+};
+
+//users model
+const updatePhotoProfile = (data) => {
+  const { id, photo } = data;
+  let time = new Date().toISOString();
+  return new Promise((resolve, reject) => {
+    pool.query(
+      `UPDATE users SET photo='${photo}', update_at='${time}' WHERE id='${id}'`,
       (err, result) => {
         if (!err) {
           resolve(result);
@@ -133,5 +152,6 @@ module.exports = {
   getOTP,
   changePassword,
   updateProfile,
+  updatePhotoProfile,
   getProfileUsers,
 };

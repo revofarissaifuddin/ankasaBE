@@ -11,5 +11,4 @@ router.get("/my-users/", protect, getUserByID);
 router.put("/my-users/", protect, UpdateProfileUsers);
 router.put("/my-users/photo/", protect, UpdatePhotoPorfile);
 
-
 module.exports = router;

@@ -15,7 +15,7 @@ const {
 } = require("../helpers/generateToken");
 const email = require("../middleware/email");
 
-const UsersController = {
+const AuthController = {
   //function post/add/register data users
   registerUser: async (req, res) => {
     // cek users
@@ -236,4 +236,4 @@ const UsersController = {
     }
   },
 };
-module.exports = UsersController;
+module.exports = AuthController;
