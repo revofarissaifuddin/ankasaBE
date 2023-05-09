@@ -1,4 +1,8 @@
-const { createBooking } = require("../models/bookingModel");
+const {
+  createBooking,
+  selectBookingId,
+  selectBookingUserId,
+} = require("../models/bookingModel");
 const BookingController = {
   InsertBooking: async (req, res, next) => {
     try {
@@ -27,6 +31,52 @@ const BookingController = {
       res.status(404).json({
         status: 404,
         message: "Error request input data airline failed",
+      });
+      next(error);
+    }
+  },
+
+  ReadBookingIDUser: async (req, res, next) => {
+    try {
+      const id = req.payload.id;
+      const showTicketAll = await selectBookingUserId(id);
+      if (!showTicketAll) {
+        res
+          .status(404)
+          .json({ status: 400, message: "Error request data not found" });
+      }
+      res.status(200).json({
+        status: 200,
+        message: "data booking found",
+        data: showTicketAll.rows,
+      });
+    } catch (error) {
+      res.status(404).json({
+        status: 404,
+        message: "Error request booking failed",
+      });
+      next(error);
+    }
+  },
+
+  ReadBookingID: async (req, res, next) => {
+    try {
+      const id = req.params.id;
+      const showBookingID = await selectBookingId(id);
+      if (!showBookingID) {
+        res
+          .status(404)
+          .json({ status: 400, message: "Error request data not found" });
+      }
+      res.status(200).json({
+        status: 200,
+        message: "data booking found",
+        data: showBookingID.rows,
+      });
+    } catch (error) {
+      res.status(404).json({
+        status: 404,
+        message: "Error request server failed",
       });
       next(error);
     }

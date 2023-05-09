@@ -62,5 +62,28 @@ const TicketController = {
       next(error);
     }
   },
+
+  ReadTicketID: async (req, res, next) => {
+    try {
+      const id = req.params.id
+      const showTicketID = await selectTicketID(id);
+      if (!showTicketID) {
+        res
+          .status(404)
+          .json({ status: 400, message: "Error request data not found" });
+      }
+      res.status(200).json({
+        status: 200,
+        message: "data ticket found",
+        data: showTicketID.rows,
+      });
+    } catch (error) {
+      res.status(404).json({
+        status: 404,
+        message: "Error request get all ticket failed",
+      });
+      next(error);
+    }
+  },
 };
 module.exports = TicketController;
