@@ -19,7 +19,6 @@ const AirlinesController = {
         });
       }
       const data = {};
-      data.id;
       data.airline_name = req.body.airline_name;
       data.photo = imageUrl.secure_url;
 
