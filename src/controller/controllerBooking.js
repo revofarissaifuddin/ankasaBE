@@ -6,14 +6,15 @@ const {
 const BookingController = {
   InsertBooking: async (req, res, next) => {
     try {
-      const data = {};
-      data.id;
-      data.users_id = req.payload.id;
-      data.tickets_id = req.body.tickets_id;
-      data.passanger_id = req.body.tickets_id;
-      data.is_paid = req.body.tickets_id;
-      data.insurance = req.body.insurance;
-      data.subtotal = req.body.subtotal;
+      const data = {
+        id,
+        users_id: req.payload.id,
+        tickets_id: req.body.tickets_id,
+        passanger_id: req.body.tickets_id,
+        is_paid: req.body.tickets_id,
+        insurance: req.body.insurance,
+        subtotal: req.body.subtotal,
+      };
 
       const addBooking = await createBooking(data);
       console.log(addBooking);

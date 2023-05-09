@@ -7,20 +7,22 @@ const {
 const TicketController = {
   InsertTicket: async (req, res, next) => {
     try {
-      const data = {};
-      data.id;
-      data.airline_id = req.body.airline_id;
-      data.origin = req.body.origin;
-      data.destination = req.body.destination;
-      data.takeoff = req.body.takeoff;
-      data.landing = req.body.landing;
-      data.transit = req.body.transit;
-      data.facilites = req.body.facilites;
-      data.price = req.body.price;
-      data.time = req.body.time;
-      data.flight_class = req.body.flight_class;
-      data.terminal = req.body.terminal;
-      data.gate = req.body.gate;
+      const data = {
+        id,
+        airline_id: req.body.airline_id,
+        origin: req.body.origin,
+        destination: req.body.destination,
+        takeoff: req.body.takeoff,
+        landing: req.body.landing,
+        transit: req.body.transit,
+        facilites: req.body.facilites,
+        price: req.body.price,
+        time: req.body.time,
+        flight_class: req.body.flight_class,
+        terminal: req.body.terminal,
+        gate: req.body.gate
+      };
+      
       const addTicket = await createTicket(data);
       if (!addTicket) {
         return res.status(404).json({

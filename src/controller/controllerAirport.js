@@ -9,12 +9,14 @@ const {
 const AirportController = {
   InsertAirport: async (req, res, next) => {
     try {
-      const data = {};
-      data.id;
-      data.airport_name = req.body.airport_name;
-      data.city = req.body.city;
-      data.country = req.body.country;
-      data.airport_code = req.body.airport_code;
+      const data = {
+        id,
+        airport_name: req.body.airport_name,
+        city: req.body.city,
+        country: req.body.country,
+        airport_code: req.body.airport_code,
+      };
+
       const addAirport = await createAirport(data);
       if (!addAirport) {
         return res.status(404).json({
@@ -81,12 +83,14 @@ const AirportController = {
   },
   UpdateAirport: async (req, res, next) => {
     try {
-      const id = req.params.id;
-      const data = {};
-      data.airport_name = req.body.airport_name;
-      data.city = req.body.city;
-      data.country = req.body.country;
-      data.airport_code = req.body.airport_code;
+      const data = {
+        id : req.params.id,
+        airport_name: req.body.airport_name,
+        city: req.body.city,
+        country: req.body.country,
+        airport_code: req.body.airport_code,
+      };
+      
       const updateAirportt = await updateAirport(id, data);
       if (!updateAirportt) {
         return res.status(404).json({

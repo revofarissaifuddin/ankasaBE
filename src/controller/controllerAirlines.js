@@ -18,9 +18,10 @@ const AirlinesController = {
           message: "input data failed, failed to upload logo",
         });
       }
-      const data = {};
-      data.airline_name = req.body.airline_name;
-      data.photo = imageUrl.secure_url;
+      const data = {
+        airline_name: req.body.airline_name,
+        photo: imageUrl.secure_url,
+      };
 
       const addAirline = await CreateAirlines(data);
       console.log(addAirline);
@@ -100,10 +101,11 @@ const AirlinesController = {
         });
       }
 
-      const id = req.params.id;
-      const data = {};
-      data.airline_name = req.body.airline_name;
-      data.photo = imageUrl.secure_url;
+      const data = {
+        id: req.params.id,
+        airline_name: req.body.airline_name,
+        photo: imageUrl.secure_url,
+      };
 
       const updateAirline = await updateAirlines(id, data);
       if (!updateAirline) {
