@@ -46,13 +46,14 @@ const UsersController = {
         });
       }
 
-      const data = {};
-      data.email = req.body.email;
-      data.fullname = req.body.fullname;
-      data.phone = req.body.phone;
-      data.city = req.body.city;
-      data.address = req.body.address;
-      data.postcode = req.body.postcode;
+      const data = {
+        email: req.body.email,
+        fullname: req.body.fullname,
+        phone: req.body.phone,
+        city: req.body.city,
+        address: req.body.address,
+        postcode: req.body.postcode,
+      };
 
       const updateData = await updateProfile(id, data);
       if (!updateData) {
@@ -85,8 +86,8 @@ const UsersController = {
         });
       }
       const id = req.payload.id;
-      const data = {photo:imageUrl.secure_url}
-      const updatePhoto = await updatePhotoProfile(id,data);
+      const data = { photo: imageUrl.secure_url };
+      const updatePhoto = await updatePhotoProfile(id, data);
       if (!updatePhoto) {
         return res.status(404).json({
           status: 404,
@@ -95,7 +96,7 @@ const UsersController = {
       }
       return res.status(200).json({
         status: 200,
-        message: "input data success"
+        message: "input data success",
       });
     } catch (error) {
       res.status(404).json({
