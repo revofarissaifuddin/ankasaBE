@@ -2,7 +2,6 @@ const pool = require("../config/db");
 
 const createTicket = (data) => {
   const {
-    id,
     airline_id,
     origin,
     destination,
@@ -19,7 +18,7 @@ const createTicket = (data) => {
   let create_at = new Date().toISOString();
   return new Promise((resolve, reject) =>
     pool.query(
-      `INSERT INTO tickets(id,airline_id,origin,destination,takeoff,landing,transit,facilites,price,time,flight_class,terminal,gate,create_at) VALUES('${id}','${airline_id}','${origin}','${destination}','${takeoff}','${landing}','${transit}','${facilites}','${price}','${time}','${flight_class}','${terminal}','${gate}','${create_at}')`,
+      `INSERT INTO tickets(airline_id,origin,destination,takeoff,landing,transit,facilites,price,time,flight_class,terminal,gate,create_at) VALUES('${airline_id}','${origin}','${destination}','${takeoff}','${landing}','${transit}','${facilites}','${price}','${time}','${flight_class}','${terminal}','${gate}','${create_at}')`,
       (err, result) => {
         if (!err) {
           resolve(result);

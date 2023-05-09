@@ -4,7 +4,7 @@ const createAirport = (data) => {
   let create_at = new Date().toISOString();
   return new Promise((resolve, reject) =>
     pool.query(
-      `INSERT INTO airports(id, airport_name, city, country, airport_code,create_at) VALUES('${id}', '${airport_name}', '${city}', '${country}', '${airport_code}','${create_at}')`,
+      `INSERT INTO airports(airport_name, city, country, airport_code,create_at) VALUES('${airport_name}', '${city}', '${country}', '${airport_code}','${create_at}')`,
       (err, result) => {
         if (!err) {
           resolve(result);
