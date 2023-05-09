@@ -18,31 +18,37 @@ CREATE TABLE users(
 );
 
 CREATE TABLE tickets(
-    id VARCHAR PRIMARY KEY,
-    airline_id VARCHAR,
-    departure_city VARCHAR,
-	arrival_city VARCHAR,
-	departure_country VARCHAR,
-	arrival_country VARCHAR,
-    departure_date TIMESTAMP,
-    arrival_date TIMESTAMP,
-    transit VARCHAR,
-    facilities INTEGER,
-    price DECIMAL(12,2),
-    create_at TIMESTAMP,
+    id SERIAL PRIMARY KEY,
+    airline_id VARCHAR REFERENCES airline(id),
+    origin VARCHAR REFERENCES airports(id),
+	destination VARCHAR REFERENCES airports(id),
+	takeoff TIMESTAMP,
+    landing TIMESTAMP,
+    transit INTEGER,
+    price INTEGER DEFAULT NULL,
+    duration VARCHAR DEFAULT NULL,
+    create_at TIMESTAMP DEFAULT NULL,
     delete_at TIMESTAMP DEFAULT NULL,
 );
 
 CREATE Table airlines(
-    id VARCHAR PRIMARY KEY, 
+    id SERIAL PRIMARY KEY, 
     airline_name VARCHAR DEFAULT NULL, 
     airline_logo VARCHAR DEFAULT NULL
 );
 
+CREATE TABLE airports(
+    id SERIAL PRIMARY KEY,
+    airport_name VARCHAR,
+    city VARCHAR,
+    country VARCHAR,
+    airport_code VARCHAR
+);
+
 CREATE TABLE bookings(
-    id VARCHAR PRIMARY KEY, 
-    users_id VARCHAR,
-    tickets_id VARCHAR,
+    id SERIAL PRIMARY KEY, 
+    users_id VARCHAR REFERENCES users(id),
+    tickets_id VARCHAR REFERENCES tickets(id),
     passanger_id VARCHAR,
     is_paid VARCHAR,
     insurance VARCHAR,

@@ -84,8 +84,9 @@ const UsersController = {
           message: "input data failed, failed to upload foto",
         });
       }
+      const id = req.payload.id;
       const data = {photo:imageUrl.secure_url}
-      const updatePhoto = await updatePhotoProfile(data);
+      const updatePhoto = await updatePhotoProfile(id,data);
       if (!updatePhoto) {
         return res.status(404).json({
           status: 404,

@@ -8,8 +8,8 @@ const {
 const { protect } = require("../middleware/auth");
 const upload = require("../middleware/uploadPhoto");
 
-router.get("/my-users/", protect, getUserByID);
-router.put("/my-users/", protect, UpdateProfileUsers);
-router.put("/my-users/photo/",protect,upload.single("photo"),UpdatePhotoPorfile);
+router.get("/show-users/", protect, getUserByID);
+router.put("/update-users/", protect, UpdateProfileUsers);
+router.put("/update-users/photo/",protect,upload.single("photo"),UpdatePhotoPorfile);
 
 module.exports = router;

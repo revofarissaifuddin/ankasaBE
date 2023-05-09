@@ -1,31 +1,22 @@
+const { updateAirlines } = require("../models/airlinesModel");
 const {
-  CreateAirlines,
-  getAllAirlines,
-  getAirlinesById,
-  updateAirlines,
-  deleteAirlinesById,
-} = require("../models/airlinesModel");
-const cloudinary = require("../config/photo");
-const AirlinesController = {
-  InsertAirlines: async (req, res, next) => {
+  createAirport,
+  getAllAirport,
+  getAirportsById,
+  updateAirport,
+  deleteAirportById,
+} = require("../models/airportModel");
+const AirportController = {
+  InsertAirport: async (req, res, next) => {
     try {
-      const imageUrl = await cloudinary.uploader.upload(req.file.path, {
-        folder: "airlines",
-      });
-      if (!imageUrl) {
-        res.status(404).json({
-          status: 404,
-          message: "input data failed, failed to upload logo",
-        });
-      }
       const data = {};
       data.id;
-      data.airline_name = req.body.airline_name;
-      data.photo = imageUrl.secure_url;
-
-      const addAirline = await CreateAirlines(data);
-      console.log(addAirline);
-      if (!addAirline) {
+      data.airport_name = req.body.airport_name;
+      data.city = req.body.city;
+      data.country = req.body.country;
+      data.airport_code = req.body.airport_code;
+      const addAirport = await createAirport(data);
+      if (!addAirport) {
         return res.status(404).json({
           status: 404,
           message: "Error input data failed",
@@ -38,76 +29,66 @@ const AirlinesController = {
     } catch (error) {
       res.status(404).json({
         status: 404,
-        message: "Error request input data airline failed",
+        message: "Error request input data failed",
       });
       next(error);
     }
   },
 
-  ReadAirlineAll: async (req, res, next) => {
+  ReadAirportAll: async (req, res, next) => {
     try {
-      const showAirlineAll = await getAllAirlines();
-      if (!showAirlineAll) {
+      const showAirportAll = await getAllAirport();
+      if (!showAirportAll) {
         res
           .status(404)
           .json({ status: 400, message: "Error request data not found" });
       }
       res.status(200).json({
         status: 200,
-        message: "data airline found",
-        data: showAirlineAll.rows,
+        message: "data airport found",
+        data: showAirportAll.rows,
       });
     } catch (error) {
       res.status(404).json({
         status: 404,
-        message: "Error request get all airline failed",
+        message: "Error request get all airport failed",
       });
       next(error);
     }
   },
 
-  ReadAirlineById: async (req, res, next) => {
+  ReadAirportById: async (req, res, next) => {
     try {
       const id = req.params.id;
-      const showAirlineByID = await getAirlinesById(id);
-      if (!showAirlineByID) {
+      const showAirportsById = await getAirportsById(id);
+      if (!showAirportsById) {
         res
           .status(404)
           .json({ status: 400, message: "Error request data not found" });
       }
       res.status(200).json({
         status: 200,
-        message: "data airline found",
-        data: showAirlineByID.rows,
+        message: "data airport found",
+        data: showAirportsById.rows,
       });
     } catch (error) {
       res.status(404).json({
         status: 404,
-        message: "Error request get all airline failed",
+        message: "Error request get all airport failed",
       });
       next(error);
     }
   },
-
-  UpdateAirlines: async (req, res, next) => {
+  UpdateAirport: async (req, res, next) => {
     try {
-      const imageUrl = await cloudinary.uploader.upload(req.file.path, {
-        folder: "airlines",
-      });
-      if (!imageUrl) {
-        res.status(404).json({
-          status: 404,
-          message: "update data failed, failed to upload logo",
-        });
-      }
-
       const id = req.params.id;
       const data = {};
-      data.airline_name = req.body.airline_name;
-      data.photo = imageUrl.secure_url;
-
-      const updateAirline = await updateAirlines(id, data);
-      if (!updateAirline) {
+      data.airport_name = req.body.airport_name;
+      data.city = req.body.city;
+      data.country = req.body.country;
+      data.airport_code = req.body.airport_code;
+      const updateAirportt = await updateAirport(id, data);
+      if (!updateAirportt) {
         return res.status(404).json({
           status: 404,
           message: "Error update data failed",
@@ -116,7 +97,6 @@ const AirlinesController = {
       return res.status(200).json({
         status: 200,
         message: "update data success",
-        data: `name :${airline_name}`,
       });
     } catch (error) {
       res.status(404).json({
@@ -126,11 +106,10 @@ const AirlinesController = {
       next(error);
     }
   },
-
   removeDataById: async (req, res, next) => {
     try {
       const id = req.payload.id;
-      const removeData = await deleteAirlinesById(id);
+      const removeData = await deleteAirportById(id);
       if (!removeData) {
         res
           .status(404)
@@ -139,7 +118,6 @@ const AirlinesController = {
       res.status(200).json({
         status: 200,
         message: "delete data success",
-        data: `airline: ${airline_name} deleted`,
       });
     } catch (error) {
       res
@@ -149,4 +127,4 @@ const AirlinesController = {
     }
   },
 };
-module.exports = AirlinesController;
+module.exports = AirportController;
