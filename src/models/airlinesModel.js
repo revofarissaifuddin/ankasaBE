@@ -4,7 +4,7 @@ const CreateAirlines = (data) => {
   const { id, airline_name, photo } = data;
   return new Promise((resolve, reject) =>
     pool.query(
-      `INSERT INTO airlines(id, airline_name, photo) VALUES('${id}','${airline_name}','${photo}')`,
+      `INSERT INTO airlines(airline_name, photo) VALUES('${airline_name}','${photo}')`,
       (err, result) => {
         if (!err) {
           resolve(result);
