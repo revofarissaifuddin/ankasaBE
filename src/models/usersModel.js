@@ -100,8 +100,8 @@ const changePassword = (email, password) => {
 };
 
 //users model
-const updateProfile = (data) => {
-  const {id, email, fullname, phone, city, address, postcode } = data;
+const updateProfile = (id, data) => {
+  const { email, fullname, phone, city, address, postcode } = data;
   let time = new Date().toISOString();
   return new Promise((resolve, reject) => {
     pool.query(
@@ -117,8 +117,8 @@ const updateProfile = (data) => {
   });
 };
 
-const updatePhotoProfile = (data) => {
-  const { id, photo } = data;
+const updatePhotoProfile = (id, data) => {
+  const { photo } = data;
   let time = new Date().toISOString();
   return new Promise((resolve, reject) => {
     pool.query(
