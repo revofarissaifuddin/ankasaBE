@@ -8,6 +8,6 @@ const {
 
 router.post("/add", InsertTicket);
 router.get("/", ReadTicketAll);
-router.get("/show/:id", ReadTicketAll);
+router.get("/show/:id", ReadTicketID);
 
 module.exports = router;
