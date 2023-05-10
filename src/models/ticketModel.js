@@ -34,18 +34,18 @@ const selectTicket = () => {
   return pool.query(
     `
       SELECT 
-          tickets.id, tickets.takeoff, tickets.landing, tickets.transit,tickets.facilites, tickets.price, tickets.duration, tickets.flight_class,tickets.terminal,tickets.gate,
-          airlines.airline_name as airlines_name, airlines.photo as airlines_logo,
-          airports.airport_name as origin_name, airports.city as origin_city, airports.country as origin_country, airports.airport_code as origin_code,
-          airports_d.airport_name as destination_name, airports_d.city as destination_city, airports_d.country as destination_country, airports_d.airport_code as destination_code
+    tickets.id, tickets.takeoff, tickets.landing, tickets.transit,tickets.facilites, tickets.price, tickets.duration, tickets.flight_class,tickets.terminal,tickets.gate,
+    airlines.airline_name as airlines_name, airlines.photo as airlines_logo,
+    o.airport_name as origin_name, o.city as origin_city, o.country as origin_country, o.airport_code as origin_code,
+    d.airport_name as destination_name, d.city as destination_city, d.country as destination_country, d.airport_code as destination_code
       FROM 
           tickets
       JOIN
           airlines ON airlines.id = tickets.airline_id
       JOIN
-          airports ON tickets.origin = airports.id
+          airports o ON tickets.origin = o.id
       JOIN
-          airports as airports_d ON tickets.destination = airports.id  
+          airports d ON tickets.destination = d.id 
         `
   );
 };
