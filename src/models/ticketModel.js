@@ -54,7 +54,7 @@ const selectTicket = () => {
     `SELECT airlines.airline_name, airlines.photo,
       tickets.takeoff, tickets.landing, tickets.transit,tickets.facilites, tickets.price, tickets.time, tickets.flight_class,tickets.terminal,tickets.gate,
       FROM tickets
-      JOIN airlines ON tickets.airlines_id
+      JOIN airlines ON tickets.airlines_id = airlines.id
     `
   );
 };
