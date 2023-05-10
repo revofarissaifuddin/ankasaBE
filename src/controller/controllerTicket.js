@@ -16,7 +16,7 @@ const TicketController = {
         transit: req.body.transit,
         facilites: req.body.facilites,
         price: req.body.price,
-        time: req.body.time,
+        duration: req.body.duration,
         flight_class: req.body.flight_class,
         terminal: req.body.terminal,
         gate: req.body.gate
