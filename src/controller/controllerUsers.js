@@ -15,7 +15,6 @@ const UsersController = {
       let data = {
         id: req.payload.id,
       };
-
       let result = await getProfileUsers(data);
       if (!result) {
         return res

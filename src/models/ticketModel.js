@@ -63,7 +63,7 @@ const selectTicketID = (id) => {
   return pool.query(
     `
         SELECT 
-            tickets.id as tickets_id, tickets.takeoff, tickets.landing, tickets.transit,tickets.facilites, tickets.price, tickets.time, tickets.flight_class,tickets.terminal,tickets.gate,
+            tickets.id, tickets.takeoff, tickets.landing, tickets.transit,tickets.facilites, tickets.price, tickets.time, tickets.flight_class,tickets.terminal,tickets.gate,
             airlines.airline_name as airlines_name, airlines.photo as airlines_logo,
             airports.airport_name as origin_name, airports.city as origin_city, airports.country as origin_country, airports.airport_code as origin_code,
             airports_d.airport_name as destination_name, airports_d.city as destination_city, airports_d.country as destination_country, airports_d.airport_code as destination_code

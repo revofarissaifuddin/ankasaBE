@@ -134,7 +134,8 @@ const updatePhotoProfile = (id, data) => {
   });
 };
 
-const getProfileUsers = (id) => {
+const getProfileUsers = (data) => {
+  let { id } = data;
   return new Promise((resolve, reject) => {
     pool.query(`SELECT * FROM users WHERE id = '${id}'`, (err, result) => {
       if (!err) {
