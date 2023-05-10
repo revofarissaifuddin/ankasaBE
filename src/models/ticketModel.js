@@ -13,7 +13,7 @@ const createTicket = (data) => {
     time,
     flight_class,
     terminal,
-    gate
+    gate,
   } = data;
   let create_at = new Date().toISOString();
   return new Promise((resolve, reject) =>
@@ -30,7 +30,7 @@ const createTicket = (data) => {
   );
 };
 
-const selectTicket = () => {
+/* const selectTicket = () => {
   return pool.query(
     `
         SELECT 
@@ -47,6 +47,15 @@ const selectTicket = () => {
         JOIN
             airports as airports_d ON airports_d.id = tickets.destination
         `
+  );
+}; */
+const selectTicket = () => {
+  return pool.query(
+    `SELECT airlines.airline_name, airlines.photo,
+      tickets.takeoff, tickets.landing, tickets.transit,tickets.facilites, tickets.price, tickets.time, tickets.flight_class,tickets.terminal,tickets.gate,
+      FROM tickets
+      JOIN airlines ON tickets.airlines_id
+    `
   );
 };
 

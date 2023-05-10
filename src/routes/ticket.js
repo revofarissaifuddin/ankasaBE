@@ -7,7 +7,7 @@ const {
 } = require("../controller/controllerTicket");
 
 router.post("/add", InsertTicket);
-router.get("/", ReadTicketAll);
+router.get("/show-all/", ReadTicketAll);
 router.get("/show/:id", ReadTicketID);
 
 module.exports = router;
