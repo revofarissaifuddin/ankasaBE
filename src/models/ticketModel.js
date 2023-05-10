@@ -30,7 +30,7 @@ const createTicket = (data) => {
   );
 };
 
-/* const selectTicket = () => {
+const selectTicket = () => {
   return pool.query(
     `
         SELECT 
@@ -43,13 +43,13 @@ const createTicket = (data) => {
         JOIN
             airlines ON airlines.id = tickets.airlines_id
         JOIN
-            airports ON airports.id = tickets.origin
+            airports ON tickets.origin = airports.id
         JOIN
-            airports as airports_d ON airports_d.id = tickets.destination
+            airports as airports_d ON tickets.destination = airports.id 
         `
   );
-}; */
-const selectTicket = () => {
+};
+/* const selectTicket = () => {
   return pool.query(
     `SELECT airlines.airline_name, airlines.photo,
       tickets.takeoff, tickets.landing, tickets.transit,tickets.facilites, tickets.price, tickets.time, tickets.flight_class,tickets.terminal,tickets.gate,
@@ -58,7 +58,7 @@ const selectTicket = () => {
     `
   );
 };
-
+ */
 const selectTicketID = (id) => {
   return pool.query(
     `
