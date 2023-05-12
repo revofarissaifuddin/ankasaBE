@@ -12,6 +12,7 @@ const BookingController = {
         tickets_id: req.body.tickets_id,
         title: req.body.title,
         insurance: req.body.insurance,
+        subtotal: req.body.subtotal,
         total: req.body.subtotal + 2,
       };
 
