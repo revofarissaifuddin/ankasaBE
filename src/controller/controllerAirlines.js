@@ -19,6 +19,7 @@ const AirlinesController = {
         });
       }
       const data = {
+        id,
         airline_name: req.body.airline_name,
         photo: imageUrl.secure_url,
       };
