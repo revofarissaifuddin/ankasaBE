@@ -8,7 +8,6 @@ const TicketController = {
   InsertTicket: async (req, res, next) => {
     try {
       const data = {
-        id,
         users_id:req.payload.id,
         airline_id: req.body.airline_id,
         origin: req.body.origin,
