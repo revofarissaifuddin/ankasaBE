@@ -10,7 +10,6 @@ const BookingController = {
       const data = {
         users_id: req.payload.id,
         tickets_id: req.body.tickets_id,
-        passanger_id: req.body.tickets_id,
         title: req.body.title,
         insurance: req.body.insurance,
         total: req.body.subtotal + 2,

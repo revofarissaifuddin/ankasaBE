@@ -1,12 +1,12 @@
 const pool = require("../config/db");
 
 const createBooking = (data) => {
-  const { id, users_id, tickets_id, passanger_id, title, insurance, total, subtotal } =
+  const { id, users_id, tickets_id, title, insurance, total, subtotal } =
     data;
   let created_at = new Date().toISOString();
   return new Promise((resolve, reject) =>
     pool.query(
-      `INSERT INTO bookings(id, users_id, tickets_id, passanger_id,title, insurance, subtotal, created_at) VALUES('${id}', '${users_id}', '${tickets_id}', '${passanger_id}','${title}', '${insurance}','${total}','${subtotal}','${created_at}')`,
+      `INSERT INTO bookings(id, users_id, tickets_id, title, insurance, subtotal, created_at) VALUES('${id}', '${users_id}', '${tickets_id}','${title}', '${insurance}','${total}','${subtotal}','${created_at}')`,
       (err, result) => {
         if (!err) {
           resolve(result);
@@ -20,7 +20,7 @@ const createBooking = (data) => {
 const selectBookingId = (id) => {
   return pool.query(`
   SELECT 
-    bookings.id, bookings.tickets_id, bookings.is_paid, bookings.insurance, bookings.passanger_id,
+    bookings.id, bookings.tickets_id, bookings.is_paid, bookings.insurance,
     tickets.airline_id, tickets.takeoff, tickets.landing, tickets.transit, tickets.price, tickets.duration, tickets.facilites, tickets.flight_class, tickets.terminal, tickets.gate,
     airlines.airline_name, airlines.photo,
     o.airport_name as origin_name, o.city as origin_city, o.country as origin_country, o.airport_code as origin_code,
@@ -42,7 +42,7 @@ const selectBookingId = (id) => {
 const selectBookingUserId = (id) => {
   return pool.query(`
   SELECT 
-    bookings.id,bookings.users_id, bookings.tickets_id, bookings.is_paid, bookings.insurance, bookings.passanger_id,
+    bookings.id,bookings.users_id, bookings.tickets_id, bookings.is_paid, bookings.insurance,
     tickets.airline_id, tickets.takeoff, tickets.landing, tickets.transit, tickets.price, tickets.duration, tickets.facilites, tickets.flight_class, tickets.terminal, tickets.gate,
     airlines.airline_name, airlines.photo,
     o.airport_name as origin_name, o.city as origin_city, o.country as origin_country, o.airport_code as origin_code,
