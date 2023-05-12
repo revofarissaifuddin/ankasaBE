@@ -4,10 +4,12 @@ const {
   InsertBooking,
   ReadBookingIDUser,
   ReadBookingID,
+  UpdateBookingPayment,
 } = require("../controller/controllerBooking");
 const { protect } = require("../middleware/auth");
 
 router.post('/add', protect, InsertBooking);
-router.get("/my-booking/:id", protect, ReadBookingIDUser);
+router.get("/my-booking", protect, ReadBookingIDUser);
 router.get("/booking/:id", protect, ReadBookingID);
+router.put("/payment", UpdateBookingPayment);
 module.exports = router;

@@ -10,6 +10,7 @@ const AirportController = {
   InsertAirport: async (req, res, next) => {
     try {
       const data = {
+        id,
         airport_name: req.body.airport_name,
         city: req.body.city,
         country: req.body.country,

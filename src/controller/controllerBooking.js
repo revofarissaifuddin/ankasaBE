@@ -2,6 +2,7 @@ const {
   createBooking,
   selectBookingId,
   selectBookingUserId,
+  updatePayment,
 } = require("../models/bookingModel");
 const BookingController = {
   InsertBooking: async (req, res, next) => {
@@ -10,9 +11,9 @@ const BookingController = {
         users_id: req.payload.id,
         tickets_id: req.body.tickets_id,
         passanger_id: req.body.tickets_id,
+        title: req.body.title,
         is_paid: req.body.tickets_id,
         insurance: req.body.insurance,
-        subtotal: req.body.subtotal,
       };
 
       const addBooking = await createBooking(data);
@@ -72,6 +73,32 @@ const BookingController = {
         status: 200,
         message: "data booking found",
         data: showBookingID.rows,
+      });
+    } catch (error) {
+      res.status(404).json({
+        status: 404,
+        message: "Error request server failed",
+      });
+      next(error);
+    }
+  },
+
+  UpdateBookingPayment: async (req, res, next) => {
+    try {
+      const data = {
+        id: req.body.id,
+        is_paid: req.body.is_paid,
+      };
+      const update_Payment = await updatePayment(data);
+      if (!update_Payment) {
+        res
+          .status(404)
+          .json({ status: 400, message: "Error request data not found" });
+      }
+      res.status(200).json({
+        status: 200,
+        message: "update payment success",
+        data: update_Payment.rows,
       });
     } catch (error) {
       res.status(404).json({
