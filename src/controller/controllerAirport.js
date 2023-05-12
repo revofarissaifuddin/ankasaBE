@@ -1,4 +1,3 @@
-const { updateAirlines } = require("../models/airlinesModel");
 const {
   createAirport,
   getAllAirport,

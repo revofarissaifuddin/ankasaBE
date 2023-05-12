@@ -1,12 +1,12 @@
 const pool = require("../config/db");
 
 const createBooking = (data) => {
-  const {users_id, tickets_id, title, insurance, total, subtotal } =
+  const {users_id, tickets_id, title, insurance, total} =
     data;
   let created_at = new Date().toISOString();
   return new Promise((resolve, reject) =>
     pool.query(
-      `INSERT INTO bookings(users_id, tickets_id, title, insurance, subtotal, created_at) VALUES('${users_id}', '${tickets_id}','${title}', '${insurance}','${total}','${subtotal}','${created_at}')`,
+      `INSERT INTO bookings(users_id, tickets_id, title, insurance, subtotal, created_at) VALUES('${users_id}', '${tickets_id}','${title}', '${insurance}','${total}','${created_at}')`,
       (err, result) => {
         if (!err) {
           resolve(result);

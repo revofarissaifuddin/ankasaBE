@@ -11,9 +11,7 @@ const BookingController = {
         users_id: req.payload.id,
         tickets_id: req.body.tickets_id,
         title: req.body.title,
-        insurance: req.body.insurance,
-        subtotal: req.body.subtotal,
-        total: req.body.subtotal + 2,
+        insurance: req.body.insurance
       };
 
       const addBooking = await createBooking(data);
