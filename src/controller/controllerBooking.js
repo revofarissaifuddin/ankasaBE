@@ -12,8 +12,8 @@ const BookingController = {
         tickets_id: req.body.tickets_id,
         passanger_id: req.body.tickets_id,
         title: req.body.title,
-        is_paid: req.body.tickets_id,
         insurance: req.body.insurance,
+        total: req.body.subtotal + 2,
       };
 
       const addBooking = await createBooking(data);
@@ -31,7 +31,7 @@ const BookingController = {
     } catch (error) {
       res.status(404).json({
         status: 404,
-        message: "Error request input data airline failed",
+        message: "Error request input data booking failed",
       });
       next(error);
     }
