@@ -27,7 +27,7 @@ const createBooking = (data) => {
 const selectBookingId = (id) => {
   return pool.query(`
   SELECT 
-    bookings.id, bookings.tickets_id, bookings.is_paid, bookings.insurance, bookings.fullname, booking.nationality, booking.total,
+    bookings.id, bookings.tickets_id, bookings.is_paid, bookings.insurance, bookings.title, bookings.fullname, bookings.nationality, bookings.total,
     tickets.airline_id, tickets.takeoff, tickets.landing, tickets.transit, tickets.price, tickets.duration, tickets.facilites, tickets.flight_class, tickets.terminal, tickets.gate,
     airlines.airline_name, airlines.photo,
     o.airport_name as origin_name, o.city as origin_city, o.country as origin_country, o.airport_code as origin_code,
@@ -41,7 +41,7 @@ const selectBookingId = (id) => {
       JOIN
           airports o ON tickets.origin = o.id
       JOIN
-          airports d ON tickets.destination = d.id 
+          airports d ON tickets.destination = d.id  
       WHERE 
             bookings.id = '${id}'
         `);
@@ -49,7 +49,7 @@ const selectBookingId = (id) => {
 const selectBookingUserId = (id) => {
   return pool.query(`
   SELECT 
-    bookings.id,bookings.users_id, bookings.tickets_id, bookings.is_paid, bookings.insurance, bookings.fullname, booking.nationality, booking.total,
+    bookings.id, bookings.tickets_id, bookings.is_paid, bookings.insurance, bookings.title, bookings.fullname, bookings.nationality, bookings.total,
     tickets.airline_id, tickets.takeoff, tickets.landing, tickets.transit, tickets.price, tickets.duration, tickets.facilites, tickets.flight_class, tickets.terminal, tickets.gate,
     airlines.airline_name, airlines.photo,
     o.airport_name as origin_name, o.city as origin_city, o.country as origin_country, o.airport_code as origin_code,
@@ -63,7 +63,7 @@ const selectBookingUserId = (id) => {
       JOIN
           airports o ON tickets.origin = o.id
       JOIN
-          airports d ON tickets.destination = d.id 
+          airports d ON tickets.destination = d.id  
       WHERE 
             bookings.users_id = '${id}'`);
 };
