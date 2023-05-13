@@ -47,12 +47,14 @@ CREATE TABLE airports(
 
 CREATE TABLE bookings(
     id SERIAL PRIMARY KEY, 
-    users_id VARCHAR REFERENCES users(id),
-    tickets_id VARCHAR REFERENCES tickets(id),
-    passanger_id VARCHAR,
-    is_paid VARCHAR,
-    insurance VARCHAR,
-    subtotal VARCHAR,
+    users_id VARCHAR,
+    tickets_id INTEGER,
+    is_paid INTEGER DEFAULT 0,
+    title VARCHAR DEFAULT NULL,
+    fullname VARCHAR DEFAULT NULL, 
+    nationality VARCHAR DEFAULT NULL,
+    insurance VARCHAR DEFAULT NULL,
+    subtotal INTEGER DEFAULT 0,
     created_at TIMESTAMP,
     deleted_at TIMESTAMP DEFAULT NULL
 );

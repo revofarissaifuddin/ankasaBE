@@ -8,10 +8,14 @@ const BookingController = {
   InsertBooking: async (req, res, next) => {
     try {
       const data = {
-        users_id: req.payload.id,
+        users_id: req.body.id,
         tickets_id: req.body.tickets_id,
         title: req.body.title,
-        insurance: req.body.insurance
+        insurance: req.body.insurance,
+        total: req.body.total,
+        fullname: req.body.fullname,
+        nationality: req.body.nationality,
+        is_paid: req.body.is_paid,
       };
 
       const addBooking = await createBooking(data);
@@ -83,11 +87,11 @@ const BookingController = {
 
   UpdateBookingPayment: async (req, res, next) => {
     try {
+      const id = req.params.id;
       const data = {
-        id: req.body.id,
         is_paid: req.body.is_paid,
       };
-      const update_Payment = await updatePayment(data);
+      const update_Payment = await updatePayment(id, data);
       if (!update_Payment) {
         res
           .status(404)

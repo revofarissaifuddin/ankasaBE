@@ -11,5 +11,5 @@ const { protect } = require("../middleware/auth");
 router.post('/add', protect, InsertBooking);
 router.get("/my-booking", protect, ReadBookingIDUser);
 router.get("/booking/:id", protect, ReadBookingID);
-router.put("/payment", UpdateBookingPayment);
+router.put("/is_paid/:id", protect, UpdateBookingPayment);
 module.exports = router;
