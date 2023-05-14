@@ -8,7 +8,7 @@ const BookingController = {
   InsertBooking: async (req, res, next) => {
     try {
       const data = {
-        users_id: req.body.id,
+        users_id: req.body.users_id,
         tickets_id: req.body.tickets_id,
         title: req.body.title,
         insurance: req.body.insurance,
