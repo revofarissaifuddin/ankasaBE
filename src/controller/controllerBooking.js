@@ -12,7 +12,6 @@ const BookingController = {
         tickets_id: req.body.tickets_id,
         title: req.body.title,
         insurance: req.body.insurance,
-        total: req.body.total,
         fullname: req.body.fullname,
         nationality: req.body.nationality,
         is_paid: req.body.is_paid,
