@@ -47,7 +47,7 @@ const TicketController = {
       const { searchBy, searchValue} = req.query;
       const data = {
         searchBy: searchBy || "destination_country",
-        search: searchValue || ""
+        searchValue: searchValue || "",
       };
     
       const showTicketAll = await selectTicket(data);
