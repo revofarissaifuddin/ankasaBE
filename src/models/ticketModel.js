@@ -47,7 +47,7 @@ const selectTicket = () => {
           airports o ON tickets.origin = o.id
       JOIN
           airports d ON tickets.destination = d.id
-      WHERE tickets.${searchBy} ILIKE '%${searchValue}%' ORDER BY recipes.${sortBy} ${sort} LIMIT ${limit} OFFSET ${offset}
+      WHERE tickets.${searchBy} ILIKE '%${searchValue}%' ORDER BY tickets.${sortBy} ${sort} LIMIT ${limit} OFFSET ${offset}
         `
   );
 };
