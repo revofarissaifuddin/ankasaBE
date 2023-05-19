@@ -31,7 +31,7 @@ const createTicket = (data) => {
 };
 
 const selectTicket = (data) => {
-  let { searchBy, searchValue} = data;
+  let { searchBy, searchValue } = data;
   return pool.query(
     `
       SELECT 
@@ -47,8 +47,7 @@ const selectTicket = (data) => {
           airports o ON tickets.origin = o.id
       JOIN
           airports d ON tickets.destination = d.id
-      WHERE tickets.${searchBy} ILIKE '%${searchValue}%' 
-      `
+      WHERE tickets.${searchBy} ILIKE '%${searchValue}%';`
   );
 };
 /* const selectTicket = () => {

@@ -44,8 +44,8 @@ const TicketController = {
 
   ReadTicketAll: async (req, res, next) => {
     try {
-      const { searchBy, searchValue} = req.query;
-      const data = {
+      let { searchBy, searchValue} = req.query;
+      let data = {
         searchBy: searchBy || "destination_country",
         searchValue: searchValue || "",
       };
