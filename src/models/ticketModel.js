@@ -30,7 +30,7 @@ const createTicket = (data) => {
   );
 };
 
-const selectTicket = () => {
+const selectTicket = (data) => {
   let { searchBy, searchValue} = data;
   return pool.query(
     `
