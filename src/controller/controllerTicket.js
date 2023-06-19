@@ -44,7 +44,13 @@ const TicketController = {
 
   ReadTicketAll: async (req, res, next) => {
     try {
-      const showTicketAll = await selectTicket();
+      let { searchBy, searchValue} = req.query;
+      let data = {
+        searchBy: searchBy || "destination_country",
+        searchValue: searchValue || "",
+      };
+    
+      const showTicketAll = await selectTicket(data);
       if (!showTicketAll) {
         res
           .status(404)
